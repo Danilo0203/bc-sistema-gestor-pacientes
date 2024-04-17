@@ -17,7 +17,8 @@ class AuthController extends Controller
             'nombre' => $request->nombre,
             'usuario' => $request->usuario,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'rol_id' => $request->rol_id
         ]);
 
         // Crear token de acceso
@@ -46,6 +47,11 @@ class AuthController extends Controller
 
         // Crear token de acceso
         $token = $user->createToken('auth_token')->plainTextToken;
+
+        // Mandar solo el nombre del rol
+        $user->rol = $user->rol->nombre;
+        // ocultar el campo rol_id
+        unset($user->rol_id);
 
         // Respuesta JSON
         return response()->json([

@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Guardar los roles en la base de datos
+        $this->call(RolSeeder::class);
+
         // Guardar el usuario principal en la base de datos
         $this->call(UserAdminSeeder::class);
     }

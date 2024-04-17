@@ -21,6 +21,7 @@ class User extends Authenticatable
         'usuario',
         'email',
         'password',
+        'rol_id',
     ];
 
     // Campos que se ocultan
@@ -36,5 +37,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Relación uno a muchos inversa con la tabla roles
+    public function rol()
+    {
+        return $this->belongsTo(Rol::class);
     }
 }
