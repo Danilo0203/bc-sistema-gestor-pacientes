@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\MunicipioController;
+use App\Http\Controllers\DireccionController;
 
 
 // Rutas de autenticación
@@ -18,4 +21,13 @@ Route::middleware('auth:sanctum')->group(function(){
     
     // Rutas de roles, leer, crear, actualizar y eliminar
     Route::apiResource('roles', RolController::class);
+
+    // Rutas para departamentos, leer, crear, actualizar y eliminar
+    Route::apiResource('departamentos', DepartamentoController::class);
+
+    // Rutas para municipios, leer, crear, actualizar y eliminar
+    Route::apiResource('municipios', MunicipioController::class);
+
+    // Rutas para direcciones, leer, crear, actualizar y eliminar
+    Route::apiResource('direcciones', DireccionController::class);
 });

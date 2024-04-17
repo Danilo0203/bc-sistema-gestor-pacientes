@@ -16,7 +16,7 @@ class RolController extends Controller
     {
         try {
             // Obtenemos todos los roles
-            $roles = Rol::all()->makeHidden('updated_at');
+            $roles = Rol::all();
 
             // Retornamos la colección de roles en formato JSON
             return new RolesCollection($roles);

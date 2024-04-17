@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Roles;
+namespace App\Http\Requests\Direccion;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRolRequest extends FormRequest
+class UpdateDireccionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,11 @@ class UpdateRolRequest extends FormRequest
 
         if ($method === 'PUT') {
             return [
-            'nombre' => 'required|string|max:30|unique:roles',
-            'descripcion' => 'string|max:255',
+            'nombre' => ['required', 'string', 'max:100']
             ];
         }else{
             return [
-                'nombre' => 'sometimes|required|string|max:30|unique:roles',
-                'descripcion' => 'sometimes|string|max:255',
+            'nombre' => ['sometimes', 'required', 'string', 'max:100'] 
             ];
         }
     }
