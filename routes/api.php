@@ -7,7 +7,9 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\DireccionController;
-
+use App\Http\Controllers\EstadoCivilController;
+use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\ProfesionController;
 
 // Rutas de autenticación
 Route::prefix('auth')->group(function(){
@@ -30,4 +32,13 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // Rutas para direcciones, leer, crear, actualizar y eliminar
     Route::apiResource('direcciones', DireccionController::class);
+
+    // Rutas para el estado civil del paciente, leer, crear, actualizar y eliminar
+    Route::apiResource('estado-civil', EstadoCivilController::class);
+
+    // Rutas para los generos del paciente, leer, crear, actualizar y eliminar
+    Route::apiResource('generos', GeneroController::class);
+
+    // Rutas para las profesiones del paciente, leer, crear, actualizar y eliminar
+    Route::apiResource('profesiones', ProfesionController::class);
 });
