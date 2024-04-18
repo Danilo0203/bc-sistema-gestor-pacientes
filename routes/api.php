@@ -10,6 +10,7 @@ use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\EstadoCivilController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\ProfesionController;
+use App\Http\Controllers\PacienteController;
 
 // Rutas de autenticación
 Route::prefix('auth')->group(function(){
@@ -41,4 +42,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // Rutas para las profesiones del paciente, leer, crear, actualizar y eliminar
     Route::apiResource('profesiones', ProfesionController::class);
+
+    // Rutas para los pacientes, leer, crear, actualizar y eliminar
+    Route::apiResource('pacientes', PacienteController::class);
 });

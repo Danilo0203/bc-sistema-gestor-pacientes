@@ -24,4 +24,9 @@ class Direccion extends Model
         return $this->belongsTo(Municipio::class);
     }
 
+    // Relación con la tabla pacientes
+    public function pacientes()
+    {
+        return $this->hasMany(Paciente::class);
+    }
 }

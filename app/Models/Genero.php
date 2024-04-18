@@ -16,4 +16,10 @@ class Genero extends Model
     protected $fillable = [
         'nombre'
     ];
+
+    // Relación con la tabla pacientes
+    public function pacientes()
+    {
+        return $this->hasMany(Paciente::class);
+    }
 }
