@@ -11,6 +11,8 @@ use App\Http\Controllers\EstadoCivilController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\ProfesionController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\DatoMedicoController;
+use App\Http\Controllers\DatoMedicoPacienteController;
 
 // Rutas de autenticación
 Route::prefix('auth')->group(function(){
@@ -45,4 +47,10 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // Rutas para los pacientes, leer, crear, actualizar y eliminar
     Route::apiResource('pacientes', PacienteController::class);
+
+    // Rutas para los datos médicos, leer, crear, actualizar y eliminar
+    Route::apiResource('datos-medicos', DatoMedicoController::class);
+
+    // Rutas para los datos médicos del paciente, leer, crear, actualizar y eliminar
+    Route::apiResource('datos-medicos-paciente', DatoMedicoPacienteController::class);
 });

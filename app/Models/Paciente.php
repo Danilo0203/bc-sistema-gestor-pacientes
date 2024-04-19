@@ -47,4 +47,8 @@ class Paciente extends Model
         return $this->belongsTo(Direccion::class);
     }
     
+    // Relación con la tabla datos medicos pacientes
+    public function datoMedicoPacientes(){
+        return $this->hasMany(DatoMedicoPaciente::class);
+    }
 }

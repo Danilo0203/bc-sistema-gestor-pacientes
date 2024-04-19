@@ -35,13 +35,13 @@ class UpdatePacienteRequest extends FormRequest
             ];
         } else {
             return [
-                'nombre' => ['string', 'max:30'],
-                'apellido' => ['string', 'max:30'],
-                'fecha_nacimiento' => ['date'],
-                'genero_id' => ['exists:generos,id'],
-                'estado_civil_id' => ['exists:estado_civil,id'],
-                'profesion_id' => ['exists:profesiones,id'],
-                'direccion_id' => ['exists:direcciones,id']
+                'nombre' => ['sometimes', 'required', 'string', 'max:30'],
+                'apellido' => ['sometimes', 'required', 'string', 'max:30'],
+                'fecha_nacimiento' => ['sometimes', 'required', 'date'],
+                'genero_id' => ['sometimes', 'required', 'exists:generos,id'],
+                'estado_civil_id' => ['sometimes', 'required', 'exists:estado_civil,id'],
+                'profesion_id' => ['sometimes', 'required', 'exists:profesiones,id'],
+                'direccion_id' => ['sometimes', 'required', 'exists:direcciones,id']
             ];
         }
     }
