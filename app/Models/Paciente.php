@@ -51,4 +51,9 @@ class Paciente extends Model
     public function datoMedicoPacientes(){
         return $this->hasMany(DatoMedicoPaciente::class);
     }
+
+    // Relación con la tabla receta pacientes
+    public function recetaPacientes(){
+        return $this->hasMany(RecetaPaciente::class);
+    }
 }

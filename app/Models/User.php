@@ -44,4 +44,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Rol::class);
     }
+
+    // Relación uno a muchos con la tabla recetas
+    public function recetas()
+    {
+        return $this->hasMany(Receta::class);
+    }
 }

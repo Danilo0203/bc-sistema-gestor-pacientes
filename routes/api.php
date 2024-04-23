@@ -13,6 +13,8 @@ use App\Http\Controllers\ProfesionController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\DatoMedicoController;
 use App\Http\Controllers\DatoMedicoPacienteController;
+use App\Http\Controllers\RecetaController;
+use App\Http\Controllers\RecetaPacienteController;
 
 // Rutas de autenticación
 Route::prefix('auth')->group(function(){
@@ -53,4 +55,10 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // Rutas para los datos médicos del paciente, leer, crear, actualizar y eliminar
     Route::apiResource('datos-medicos-paciente', DatoMedicoPacienteController::class);
+
+    // Rutas para las recetas médicas, leer, crear, actualizar y eliminar
+    Route::apiResource('recetas-medicas', RecetaController::class);
+
+    // Rutas para las recetas médicas del paciente, leer, crear, actualizar y eliminar
+    Route::apiResource('recetas-medicas-paciente', RecetaPacienteController::class);
 });
