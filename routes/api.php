@@ -16,6 +16,7 @@ use App\Http\Controllers\DatoMedicoPacienteController;
 use App\Http\Controllers\RecetaController;
 use App\Http\Controllers\RecetaPacienteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PanelController;
 
 // Rutas de autenticación
 Route::prefix('auth')->group(function(){
@@ -69,5 +70,11 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::put('usuarios/{id}', [UserController::class, 'update']);
     Route::patch('usuarios/{id}', [UserController::class, 'update']);
     Route::delete('usuarios/{id}', [UserController::class, 'destroy']);
+
+    // Panel de control 
+    Route::get('panel', [PanelController::class, 'index']);
+
+    // Cita del paciente
+    Route::get('cita/paciente/{paciente}', [PacienteController::class, 'citaPaciente']);
 
 });

@@ -56,4 +56,10 @@ class Paciente extends Model
     public function recetaPacientes(){
         return $this->hasMany(RecetaPaciente::class);
     }
+
+    // Relación con la tabla citas
+    public function cita(){
+        return $this->hasOne(Cita::class);
+    }
+
 }

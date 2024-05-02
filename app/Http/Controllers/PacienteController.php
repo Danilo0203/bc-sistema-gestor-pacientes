@@ -8,6 +8,7 @@ use App\Http\Resources\Paciente\PacienteResource;
 use App\Http\Resources\Paciente\PacienteCollection;
 use App\Http\Requests\Paciente\StorePacienteRequest;
 use App\Http\Requests\Paciente\UpdatePacienteRequest;
+use App\Models\Cita;
 
 class PacienteController extends Controller
 {
@@ -35,7 +36,16 @@ class PacienteController extends Controller
     {
         try {
             // Creamos un nuevo paciente
-            return new PacienteResource(Paciente::create($request->all()));
+            $paciente = Paciente::create($request->all());
+
+            // Creamos una nueva cita para el paciente
+            Cita::create([
+                'paciente_id' => $paciente->id,
+                'atender' => 0
+            ]);
+
+            // Retornamos el paciente en formato JSON
+            return new PacienteResource($paciente);
             
         } catch (\Exception $e) {
             return response()->json([
@@ -133,6 +143,45 @@ class PacienteController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al eliminar el paciente',
+                'error' => $e->getMessage(),
+                'status' => '500'
+            ], 500);
+        }
+    }
+
+    // Cita de un paciente
+    public function citaPaciente(string $id){
+        try {
+            // Buscamos un paciente por su ID dentro de la tabla de citas
+            $citaPaciente = Cita::where('paciente_id', $id)->first();
+
+            // Si la cita del paciente no existe retornamos un error
+            if (!$citaPaciente) {
+                return response()->json([
+                    'message' => 'Cita del paciente no encontrada',
+                    'error' => 'El paciente con el ID proporcionado no tiene una cita',
+                    'status' => '404'
+                ], 404);
+            }
+
+            // Cambiamos el estado de la cita del paciente
+            $cita = Cita::find($citaPaciente->id);
+            if ($cita->atender == 0) {
+                $cita->update(['atender' => 1]);
+            } else {
+                $cita->update(['atender' => 0]);
+            }
+
+            // Retornamos la cita del paciente en formato JSON
+            return response()->json([
+                'message' => 'Cita del paciente',
+                'data' => $cita,
+                'status' => '200'
+            ], 200);
+            
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al obtener la cita del paciente',
                 'error' => $e->getMessage(),
                 'status' => '500'
             ], 500);
