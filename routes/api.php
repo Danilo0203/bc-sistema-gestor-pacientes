@@ -26,7 +26,7 @@ Route::prefix('auth')->group(function(){
 });
 
 // Rutas protegidas
-Route::prefix('v1')->group(function(){
+Route::middleware('auth:sanctum')->group(function(){
     
     // Rutas de roles, leer, crear, actualizar y eliminar
     Route::apiResource('roles', RolController::class);
