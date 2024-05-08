@@ -23,12 +23,11 @@ class UpdateUserRequest extends FormRequest
     {
         $method = $this->method();
 
-        // Encriptamos la contraseña
-        $this->merge([
-            'password' => bcrypt($this->password),
-        ]);
-
         if ($method === 'PUT') {
+            // Encriptamos la contraseña
+            $this->merge([
+                'password' => bcrypt($this->password),
+            ]);
             return [
                 'nombre' => ['required', 'string', 'max:30'],
                 'usuario' => ['required', 'string', 'max:30', 'unique:users,usuario,' . $this->route('user')->id],
@@ -37,13 +36,26 @@ class UpdateUserRequest extends FormRequest
                 'rol_id' => ['required', 'integer', 'exists:roles,id'],
             ];
         } else {
-            return [
-                'nombre' => ['sometimes', 'string', 'max:30'],
-                'usuario' => ['sometimes', 'string', 'max:30', 'unique:users,usuario'],
-                'email' => ['sometimes', 'string', 'email', 'max:255', 'unique:users,email'],
-                'password' => ['sometimes', 'string', 'max:255', ''],
-                'rol_id' => ['sometimes', 'integer', 'exists:roles,id'],
-            ];
+            if (!$this->filled('password')) {
+                return [
+                    'nombre' => ['sometimes', 'string', 'max:30'],
+                    'usuario' => ['sometimes', 'string', 'max:30', 'unique:users,usuario'],
+                    'email' => ['sometimes', 'string', 'email', 'max:255', 'unique:users,email'],
+                    'rol_id' => ['sometimes', 'integer', 'exists:roles,id'],
+                ];
+            } else { 
+                // ENCRIPTAR CONTRASEÑA
+                $this->merge([
+                    'password' => bcrypt($this->password),
+                ]);
+                return [
+                    'nombre' => ['sometimes', 'string', 'max:30'],
+                    'usuario' => ['sometimes', 'string', 'max:30', 'unique:users,usuario'],
+                    'email' => ['sometimes', 'string', 'email', 'max:255', 'unique:users,email'],
+                    'password' => ['sometimes', 'string', 'max:255'],
+                    'rol_id' => ['sometimes', 'integer', 'exists:roles,id'],
+                ];
+            }
         }
     }
 }
