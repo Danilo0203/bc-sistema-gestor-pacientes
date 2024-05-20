@@ -77,4 +77,7 @@ Route::middleware('auth:sanctum')->group(function(){
     // Cita del paciente
     Route::get('cita/paciente/{paciente}', [PacienteController::class, 'citaPaciente']);
 
+    // Rutas para las citas
+    Route::get('citas/paciente', [PacienteController::class, 'citasPaciente']);
+
 });

@@ -191,4 +191,26 @@ class PacienteController extends Controller
             ], 500);
         }
     }
+
+    // Citas de los pacientes
+    public function citasPaciente(){
+        try {
+            // Obtenemos todas las citas de los pacientes
+            $citasPacientes = Cita::all();
+
+            // Retornamos la colección de citas de los pacientes en formato JSON
+            return response()->json([
+                'message' => 'Citas de los pacientes',
+                'data' => $citasPacientes,
+                'status' => '200'
+            ], 200);
+            
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al obtener las citas de los pacientes',
+                'error' => $e->getMessage(),
+                'status' => '500'
+            ], 500);
+        }
+    }
 }
