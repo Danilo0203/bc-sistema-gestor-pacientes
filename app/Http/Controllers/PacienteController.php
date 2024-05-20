@@ -130,6 +130,10 @@ class PacienteController extends Controller
                     'status' => '404'
                 ], 404);
             }
+            
+            // Eliminamos la cita del paciente
+            $cita = Cita::where('paciente_id', $id)->first();
+            $cita->delete();
 
             // Eliminamos el paciente
             $paciente->delete();
