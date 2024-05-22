@@ -145,6 +145,13 @@ class PacienteController extends Controller
             ], 200);
             
         } catch (\Exception $e) {
+
+            // Volvemos a crear la cita del paciente si hubo un error al eliminar el paciente
+            Cita::create([
+                'paciente_id' => $paciente->id,
+                'atender' => 0
+            ]);
+
             return response()->json([
                 'message' => 'Error al eliminar el paciente',
                 'error' => $e->getMessage(),
