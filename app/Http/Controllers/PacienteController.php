@@ -17,7 +17,7 @@ class PacienteController extends Controller
     {
         try {
             // Obtenemos todos los pacientes
-            $pacientes = Paciente::paginate(20);
+            $pacientes = Paciente::all();
 
             // Retornamos la colección de pacientes en formato JSON
             return new PacienteCollection($pacientes);

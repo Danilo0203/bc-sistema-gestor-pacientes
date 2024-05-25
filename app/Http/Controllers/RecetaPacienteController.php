@@ -16,7 +16,7 @@ class RecetaPacienteController extends Controller
     {
         try {
             // Obtenemos todas las recetas de un paciente
-            $recetasPaciente = RecetaPaciente::paginate(20);
+            $recetasPaciente = RecetaPaciente::all();
 
             // Retornamos la colección de recetas en formato JSON
             return new RecetaPacienteCollection($recetasPaciente);

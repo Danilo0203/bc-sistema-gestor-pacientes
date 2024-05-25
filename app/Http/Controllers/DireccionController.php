@@ -16,7 +16,7 @@ class DireccionController extends Controller
     {
         try {
             // Obtenemos todas las direcciones
-            $direcciones = Direccion::paginate(20);
+            $direcciones = Direccion::all();
 
             // Retornamos la colección de direcciones en formato JSON
             return new DireccionCollection($direcciones);

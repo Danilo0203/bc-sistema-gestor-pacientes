@@ -16,7 +16,7 @@ class DatoMedicoPacienteController extends Controller
     {
         try {
             // Obtenemos todos los datos médicos de un paciente
-            $datosMedicosPaciente = DatoMedicoPaciente::paginate(20);
+            $datosMedicosPaciente = DatoMedicoPaciente::all();
 
             // Retornamos la colección de datos médicos de un paciente en formato JSON
             return new DatoMedicoPacienteCollection($datosMedicosPaciente);

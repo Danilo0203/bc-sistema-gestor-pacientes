@@ -16,7 +16,7 @@ class ProfesionController extends Controller
     {
         try {
             // Obtenemos todas las profesiones
-            $profesiones = Profesion::paginate(20);
+            $profesiones = Profesion::all();
 
             // Retornamos la colección de profesiones en formato JSON
             return new ProfesionCollection($profesiones);

@@ -16,7 +16,7 @@ class RecetaController extends Controller
     {
         try {
             // Obtenemos todas las recetas
-            $recetas = Receta::paginate(20);
+            $recetas = Receta::all();
 
             // Retornamos la colección de recetas en formato JSON
             return new RecetaCollection($recetas);

@@ -16,7 +16,7 @@ class MunicipioController extends Controller
     {
         try {
             // Obtenemos todos los municipios
-            $municipios = Municipio::paginate(20);
+            $municipios = Municipio::all();
 
             // Retornamos la colección de municipios en formato JSON
             return new MunicipioCollection($municipios);
